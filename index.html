@@ -151,14 +151,18 @@ fetch(url, {
     body: formData
 })
 .then(() => {
-    alert("Submitted!");
-    document.getElementById("myForm").reset();
-})
-.catch(error => {
-    console.log(error);
-});
+      alert("Submitted successfully!");
 
+        document.getElementById("myForm").reset();
 
+    })
+    .catch((error)=>{
+
+        console.log(error);
+
+        alert("Submission failed.");
+
+    });
 
 });
 </script>
