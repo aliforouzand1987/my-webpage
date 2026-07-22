@@ -130,25 +130,33 @@ const url = "https://script.google.com/macros/s/AKfycbxgVVw2yg8BYXcUX8lTedjF-Twi
 document.getElementById("myForm").addEventListener("submit", async function(e){
     e.preventDefault();
 
-    const data = {
-        firstName: document.getElementById("firstName").value,
-        lastName: document.getElementById("lastName").value
-    };
 
-    const response = await fetch(url,{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify(data)
-    });
 
-    if(response.ok){
-        alert("Submitted successfully!");
-        this.reset();
-    }else{
-        alert("Submission failed.");
-    }
+    const formData = new URLSearchParams();
+
+formData.append(
+    "firstName",
+    document.getElementById("firstName").value
+);
+
+formData.append(
+    "lastName",
+    document.getElementById("lastName").value
+);
+
+
+const response = await fetch(url, {
+    method: "POST",
+    body: formData
+});
+
+
+if(response.ok){
+    alert("Submitted successfully!");
+    this.reset();
+}else{
+    alert("Submission failed.");
+}
 });
 </script>
 </body>
