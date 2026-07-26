@@ -127,7 +127,7 @@
 <script>
 const url = "https://script.google.com/macros/s/AKfycbxU0Ey0G_vcxjqDhI_AjFIA6talyKXFnqsRFwOMQKWexGzrj8DBtBse6FadIq78Xs-r/exec";
 
-document.getElementById("myForm").addEventListener("submit", function (e) {
+document.getElementById("myForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
     const formData = new URLSearchParams();
@@ -138,18 +138,19 @@ document.getElementById("myForm").addEventListener("submit", function (e) {
         method: "POST",
         body: formData
     })
-    .then(response => response.text())
-    .then(data => {
+    .then(function(response) {
+        return response.text();
+    })
+    .then(function(data) {
         console.log(data);
         alert("Submitted successfully!");
         document.getElementById("myForm").reset();
     })
-    .catch(error => {
+    .catch(function(error) {
         console.error(error);
         alert("Submission failed.");
     });
 });
-
 </script>
 </body>
 </html>
